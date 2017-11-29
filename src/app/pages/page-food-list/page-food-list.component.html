@@ -1,0 +1,6 @@
+<div>
+  <h2>Food List</h2>
+  <app-food-add-form></app-food-add-form>
+
+  <app-food-list [foods]="foodList" (onDelete)="handleDeleteItem($event)"></app-food-list>
+</div>

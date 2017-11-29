@@ -1,0 +1,7 @@
+<div>
+  <ul>
+    <li *ngFor="let food of foods">
+      <app-food-item [food]="food" (onDelete)="handleDelete(food)"></app-food-item>
+    </li>
+  </ul>
+</div>
