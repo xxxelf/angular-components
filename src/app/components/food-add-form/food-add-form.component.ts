@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Output, OnInit, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-food-add-form",
@@ -6,7 +6,28 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./food-add-form.component.css"]
 })
 export class FoodAddFormComponent implements OnInit {
+  @Output() onAdd = new EventEmitter<object>();
+
+  feedbacklEnabled= false;
+
+  name = "";
+  calories = "";
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  handleAdd(form) {
+    this.feedbacklEnabled = true;
+
+    if (form.valid) {
+      const newFood = {
+        name: this.name,
+        calories: this.calories
+      };
+      this.onAdd.emit(newFood);
+    }
+  }
+
 }

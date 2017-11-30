@@ -13,6 +13,6 @@ export class FoodItemComponent implements OnInit {
   ngOnInit() {}
 
   handleDelete() {
-    this.onDelete.emit();
+    this.onDelete.emit(this.food);
   }
 }

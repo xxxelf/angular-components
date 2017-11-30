@@ -1,3 +1,27 @@
-<p>
-  food-add-form works!
-</p>
+<form (ngSubmit)="handleAdd(myForm)" #myForm="ngForm" novalidate>
+
+  <div class="field" [ngClass]="{'has-error': feedbackEnabled && myName.errors}">
+    <label>name</label>
+    <input type="text" name="name" [(ngModel)]="name" #myName="ngModel" required minlength="6" [disabled]="processing"/>
+    <div *ngIf="feedbackEnabled && myName.errors">
+      <p *ngIf="myName.errors.required" class="validation">name required</p>
+      <p *ngIf="myName.errors.minlength" class="validation">name is too short</p>
+    </div>
+  </div>
+
+  <div class="field" [ngClass]="{'has-error': feedbackEnabled && myCalories.errors}">
+    <label>calories</label>
+    <input type="number" name="calories" [(ngModel)]="calories" #myCalories="ngModel" required min="1"  [disabled]="processing"/>
+    <div *ngIf="feedbackEnabled && myCalories.errors">
+      <p *ngIf="myCalories.errors.required" class="validation">calories required</p>
+      <p *ngIf="myCalories.errors.min" class="validation">calories needs to be 1 or more</p>
+    </div>
+  </div>
+
+  <div class="field submit">
+    <button type="submit">Add</button>
+    <div *ngIf="feedbackEnabled && myForm.invalid">
+      <p class="validation">there are errors in the form, please review the fields</p>
+    </div>
+  </div>
+</form>
