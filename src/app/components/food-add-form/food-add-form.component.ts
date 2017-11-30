@@ -8,7 +8,7 @@ import { Component, Output, OnInit, EventEmitter } from "@angular/core";
 export class FoodAddFormComponent implements OnInit {
   @Output() onAdd = new EventEmitter<object>();
 
-  feedbacklEnabled= false;
+ feedbackEnabled= false;
 
   name = "";
   calories = "";
@@ -19,7 +19,7 @@ export class FoodAddFormComponent implements OnInit {
   }
 
   handleAdd(form) {
-    this.feedbacklEnabled = true;
+    this.feedbackEnabled = true;
 
     if (form.valid) {
       const newFood = {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import {FoodService} from "../../services/food.service";
 
@@ -9,11 +10,10 @@ import {FoodService} from "../../services/food.service";
 })
 export class PageFoodListComponent implements OnInit {
 
-
   loading = true;
   foodList = null;
 
-  constructor(private foodService: FoodService) {}
+  constructor(private foodService: FoodService, private router: Router) {}
 
   ngOnInit() {
     this.foodService.getAllFoods((data) => {
@@ -28,10 +28,10 @@ export class PageFoodListComponent implements OnInit {
       this.foodList.splice(index, 1);
     });
   }
-
   handleAdd(newFood) {
     this.foodService.create(newFood, () => {
       this.foodList.push(newFood);
+      this.router.navigate(["/food", newFood.id]);
     });
   }
 }

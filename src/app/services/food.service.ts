@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class FoodService {
-  foodList =[
+  foodList = [
     {
+      id: 1,
       name: "botifarra",
       calories: 999
     },
     {
+      id: 2,
       name: "pizza",
       calories: 405
     }
@@ -28,6 +30,7 @@ export class FoodService {
   }
 
   create(newFood, callback) {
+    newFood.id = Math.floor(Math.random() * 1000000);
     window.setTimeout(() => {
       callback();
     }, 1000);
